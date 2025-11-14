@@ -1,6 +1,5 @@
-
-import { projectsData } from "@/lib/projects-data";
-import type { Project } from "@/lib/projects-data";
+import { projectsData } from "@/infrastructure/projects/projects-data";
+import type { Project } from "@/domain/projects/entities/Project";
 
 export async function fetchGitHubProjects(): Promise<Project[]> {
     // Simula una pequeña demora para mantener la sensación de carga asíncrona si se desea,

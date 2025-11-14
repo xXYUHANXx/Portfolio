@@ -2,19 +2,19 @@
 
 import React, { Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Window } from "@/components/retro/Window";
-import { About } from "@/components/portfolio/About";
-import { Header } from "@/components/portfolio/Header";
-import { Social } from "@/components/portfolio/Social";
-import { Projects } from "@/components/portfolio/Projects";
-import { Terminal } from "@/components/portfolio/Terminal";
-import { Bio } from "@/components/portfolio/Bio";
-import { MyPC } from "@/components/portfolio/MyPC";
-import { RecycleBin } from "@/components/portfolio/RecycleBin";
-import { DesktopIcons } from "@/components/portfolio/DesktopIcons";
-import { AlertWindow } from "@/components/portfolio/AlertWindow";
-import { SystemMonitor } from "@/components/portfolio/SystemMonitor";
-import { CV } from "@/components/portfolio/CV";
+import { Window } from "@/components/ui/legacy/Window";
+import { About } from "@/components/portfolio/about/About";
+import { Header } from "@/components/portfolio/shell/Header";
+import { Social } from "@/components/portfolio/contact/Social";
+import { Projects } from "@/components/portfolio/projects/Projects";
+import { Terminal } from "@/components/portfolio/shell/Terminal";
+import { Bio } from "@/components/portfolio/about/Bio";
+import { MyPC } from "@/components/portfolio/my-pc/MyPC";
+import { RecycleBin } from "@/components/portfolio/recycle-bin/RecycleBin";
+import { DesktopIcons } from "@/components/portfolio/shell/DesktopIcons";
+import { AlertWindow } from "@/components/portfolio/shell/AlertWindow";
+import { SystemMonitor } from "@/components/portfolio/shell/SystemMonitor";
+import { CV } from "@/components/portfolio/cv/CV";
 import { fetchGitHubProjects, Project } from "@/lib/github";
 
 function ProjectsLoader() {

@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { WindowHeader } from "@/components/retro/WindowHeader";
+import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import { Folder, FolderOpen, Star, GitFork } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import type { Project } from "@/lib/projects-data";
+import type { Project } from "@/infrastructure/projects/projects-data";
 import {
   IconHTML,
   IconCSS,

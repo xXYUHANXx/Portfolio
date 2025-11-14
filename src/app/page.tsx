@@ -2,8 +2,8 @@
 "use client";
 
 import React from "react";
-import { Terminal } from "@/components/portfolio/Terminal";
-import { Desktop } from "@/components/portfolio/Desktop";
+import { Terminal } from "@/components/portfolio/shell/Terminal";
+import { Desktop } from "@/components/portfolio/shell/Desktop";
 
 export default function Home() {
   const [isLoading, setIsLoading] = React.useState(true);

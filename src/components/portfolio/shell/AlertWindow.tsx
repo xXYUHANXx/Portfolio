@@ -1,7 +1,7 @@
 "use client";
 
-import { Window } from "@/components/retro/Window";
-import { WindowHeader } from "@/components/retro/WindowHeader";
+import { Window } from "@/components/ui/legacy/Window";
+import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 import Image from "next/image";
 
 export function AlertWindow({

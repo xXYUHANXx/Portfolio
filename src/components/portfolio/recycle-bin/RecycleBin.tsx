@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { WindowHeader } from "@/components/retro/WindowHeader";
+import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const deletedFiles = [

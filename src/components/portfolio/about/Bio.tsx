@@ -1,6 +1,6 @@
 "use client";
 
-import { WindowHeader } from "@/components/retro/WindowHeader";
+import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 

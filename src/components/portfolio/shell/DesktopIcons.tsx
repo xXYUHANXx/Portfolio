@@ -9,19 +9,14 @@ const icons = [
     iconSrc: "https://i.ibb.co/1G8bwQhf/pccom.png",
   },
   {
+    id: "recycle-bin",
+    name: "Recycle Bin",
+    iconSrc: "https://i.ibb.co/LdzPhRBt/recyclebin.png",
+  },
+  {
     id: "projects",
     name: "PROJECTS",
     iconSrc: "https://i.ibb.co/sJbKF4XM/Projects.png",
-  },
-  {
-    id: "contact",
-    name: "CONTACT",
-    iconSrc: "https://i.ibb.co/RT5GfGch/contact.png",
-  },
-  {
-    id: "about",
-    name: "ABOUT ME",
-    iconSrc: "https://i.ibb.co/G315Npm3/About-Me.png",
   },
   {
     id: "cv",
@@ -29,10 +24,16 @@ const icons = [
     iconSrc: "https://i.ibb.co/qLWrRtZW/Resume.png",
   },
   {
-    id: "recycle-bin",
-    name: "Recycle Bin",
-    iconSrc: "https://i.ibb.co/LdzPhRBt/recyclebin.png",
+    id: "about",
+    name: "ABOUT ME",
+    iconSrc: "https://i.ibb.co/G315Npm3/About-Me.png",
   },
+  {
+    id: "contact",
+    name: "CONTACT",
+    iconSrc: "https://i.ibb.co/RT5GfGch/contact.png",
+  },
+  
 ];
 
 export function DesktopIcons({

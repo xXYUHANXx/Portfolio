@@ -3,8 +3,8 @@
 import { Github, Linkedin, Smartphone, Mail, Printer } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { WindowHeader } from "@/components/retro/WindowHeader";
-import { ScrollArea } from "../ui/scroll-area";
+import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 
 export function CV({

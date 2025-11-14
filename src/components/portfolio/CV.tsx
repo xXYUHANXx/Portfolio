@@ -44,11 +44,11 @@ export function CV({
                 </div>
                 <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 mt-4 text-sm print:text-xs">
                   <a
-                    href="mailto:yuhanpicos740@gmail.com"
+                    href="mailto:yuhanpicos.dev@gmail.com"
                     className="flex items-center gap-2 hover:text-gray-300"
                   >
                     <Mail size={16} />
-                    <span>yuhanpicos740@gmail.com</span>
+                    <span>yuhanpicos.dev@gmail.com</span>
                   </a>
                   <a
                     href="https://wa.me/+584164973499"
@@ -114,7 +114,7 @@ export function CV({
                           (Especialidad)
                         </li>
                         <li>JavaScript & TypeScript</li>
-                        <li>HTML5 & CSS3</li>
+                        <li>HTML5 & CSS3 (Tailwind CSS)</li>
                         <li>Figma (Diseño y prototipado)</li>
                       </ul>
                     </div>
@@ -125,27 +125,29 @@ export function CV({
                       <ul className="list-disc list-inside space-y-1">
                         <li>Node.js & Express</li>
                         <li>Java & Spring Boot</li>
-                        <li>PHP</li>
-                        <li>Python</li>
+                        <li>PHP, Python, C# & C/C++</li>
                       </ul>
                     </div>
                     <div>
                       <h3 className="text-lg print:text-base font-semibold mb-2">
-                        Bases de Datos y Lenguajes
+                        Bases de Datos
                       </h3>
                       <ul className="list-disc list-inside space-y-1">
                         <li>PostgreSQL & MySQL</li>
-                        <li>C# & C/C++</li>
+                        <li>Prisma (ORM)</li>
+                        <li>Diseño de Bases de Datos Relacionales</li>
                       </ul>
                     </div>
                     <div>
                       <h3 className="text-lg print:text-base font-semibold mb-2">
-                        Herramientas y Metodologías
+                        Herramientas y Tecnologías
                       </h3>
                       <ul className="list-disc list-inside space-y-1">
                         <li>Git & GitHub</li>
-                        <li>Metodologías Ágiles (Scrum)</li>
-                        <li>Stripe (Integración de pagos)</li>
+                        <li>Firebase (Auth, Firestore)</li>
+                        <li>Google AI & Genkit</li>
+                        <li>Framer Motion (Animaciones)</li>
+                        <li>WebRTC & WebSockets</li>
                       </ul>
                     </div>
                   </div>
@@ -175,17 +177,32 @@ export function CV({
                   <h2 className="text-2xl print:text-xl font-bold font-display border-b-2 border-gray-300 pb-2 mb-4">
                     Proyectos Destacados
                   </h2>
-                  <div className="space-y-4 print:space-y-2">
+                  <div className="space-y-6 print:space-y-4">
                     <div>
                       <h3 className="text-lg print:text-base font-semibold">
-                        CoDuck - Mantenimiento Web
+                        Cargo Track - App de Logística Full-Stack
                       </h3>
                       <p className="text-justify leading-relaxed">
-                        Plataforma de mantenimiento y soporte para sitios web.
-                        Desarrollé un sitio minimalista en WordPress optimizado
-                        para la conversión, con integraciones de Stripe,
-                        JavaScript y PHP. El foco fue la velocidad y una
-                        experiencia de usuario intuitiva.
+                        Aplicación full-stack para una agencia de envíos,
+                        desarrollada para la asignatura 'Diseño de Base de
+                        Datos'. El sistema permite a los usuarios registrarse,
+                        cotizar envíos y realizar un seguimiento en tiempo real
+                        de sus paquetes. Incluye un panel de administración para
+                        la gestión de rutas, estados y logística, todo soportado
+                        por una base de datos relacional compleja con Next.js,
+                        Prisma y PostgreSQL.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg print:text-base font-semibold">
+                        Momentos Robin Hood - App de Recetas con IA
+                      </h3>
+                      <p className="text-justify leading-relaxed">
+                        Plataforma web sofisticada para explorar y disfrutar
+                        recetas venezolanas. Construida con Next.js, Firebase
+                        para la base de datos en tiempo real y autenticación, y
+                        enriquecida con Google AI para ofrecer una experiencia
+                        de usuario inteligente y moderna.
                       </p>
                     </div>
                   </div>

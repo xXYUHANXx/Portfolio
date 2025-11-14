@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Window } from "@/components/retro/Window";
 import { About } from "@/components/portfolio/About";
@@ -15,7 +15,50 @@ import { DesktopIcons } from "@/components/portfolio/DesktopIcons";
 import { AlertWindow } from "@/components/portfolio/AlertWindow";
 import { SystemMonitor } from "@/components/portfolio/SystemMonitor";
 import { CV } from "@/components/portfolio/CV";
-import { cn } from "@/lib/utils";
+import { fetchGitHubProjects, Project } from "@/lib/github";
+
+function ProjectsLoader() {
+  return (
+    <Window className="w-[90vw] max-w-6xl h-[90vh]">
+      <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full overflow-hidden">
+        <div className="flex justify-center items-center h-full">
+          <p>Loading GitHub Projects...</p>
+        </div>
+      </div>
+    </Window>
+  );
+}
+
+function ProjectsWrapper({ onClose }: { onClose: () => void }) {
+  const [projects, setProjects] = React.useState<Project[]>([]);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    async function loadProjects() {
+      try {
+        const fetchedProjects = await fetchGitHubProjects();
+        setProjects(fetchedProjects);
+      } catch (e: any) {
+        setError(e.message);
+      }
+    }
+    loadProjects();
+  }, []);
+
+  if (error) {
+    return (
+      <Window className="w-[90vw] max-w-6xl h-[90vh]">
+        <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full overflow-hidden">
+          <div className="flex justify-center items-center h-full text-red-500">
+            <p>Error loading projects: {error}</p>
+          </div>
+        </div>
+      </Window>
+    );
+  }
+
+  return <Projects onClose={onClose} title="PROYECTOS" projects={projects} />;
+}
 
 export function Desktop() {
   const [openWindows, setOpenWindows] = React.useState<{
@@ -102,25 +145,41 @@ export function Desktop() {
   };
 
   const handlePrintCV = () => {
+    const printContainerId = "print-container";
+
+    // Cleanup previous print container if it exists
+    const existingContainer = document.getElementById(printContainerId);
+    if (existingContainer) {
+      existingContainer.remove();
+    }
+
+    // Find the CV content
     const printableContent = document.getElementById("printable-cv");
     if (!printableContent) return;
 
+    // Clone the content
+    const contentToPrint = printableContent.cloneNode(true) as HTMLElement;
+
+    // Create a container for the cloned content
     const printContainer = document.createElement("div");
-    printContainer.id = "print-container";
-    const clonedContent = printableContent.cloneNode(true) as HTMLElement;
+    printContainer.id = printContainerId;
+    printContainer.appendChild(contentToPrint);
 
-    // Remove the print button from the cloned content
-    const printButton = clonedContent.querySelector(".print\\:hidden");
-    if (printButton) {
-      printButton.parentNode?.removeChild(printButton);
-    }
-
-    printContainer.appendChild(clonedContent);
+    // Append the container to the body
     document.body.appendChild(printContainer);
 
-    window.print();
+    // Add a listener to remove the container after printing
+    window.onafterprint = () => {
+      const container = document.getElementById(printContainerId);
+      if (container) {
+        container.remove();
+      }
+      // Clean up the event listener
+      window.onafterprint = null;
+    };
 
-    document.body.removeChild(printContainer);
+    // Trigger the print dialog
+    window.print();
   };
 
   const isAnyWindowOpen =
@@ -154,7 +213,10 @@ export function Desktop() {
         )}
       </AnimatePresence>
 
-      <div className="flex flex-col w-full h-full bg-white shadow-[inset_0_10px_15px_-10px_rgba(0,0,0,0.3),inset_10px_0_15px_-10px_rgba(0,0,0,0.3),inset_-10px_0_15px_-10px_rgba(0,0,0,0.3)] overflow-hidden rounded-2xl border-4 border-black">
+      <div
+        id="printable-cv-container"
+        className="flex flex-col w-full h-full bg-white shadow-[inset_0_10px_15px_-10px_rgba(0,0,0,0.3),inset_10px_0_15px_-10px_rgba(0,0,0,0.3),inset_-10px_0_15px_-10px_rgba(0,0,0,0.3)] overflow-hidden rounded-2xl border-4 border-black"
+      >
         <Header />
         <div id="desktop-content" className="relative flex-1 scanline-overlay">
           <main className="relative flex-1 p-8 bg-grid-pattern-more-lines h-full">
@@ -260,11 +322,12 @@ export function Desktop() {
                   exit="exit"
                   key="projects-window"
                 >
-                  <Window className="w-[90vw] max-w-6xl">
-                    <Projects
-                      onClose={() => handleCloseWindow("projects")}
-                      title="PROYECTOS"
-                    />
+                  <Window className="w-[90vw] max-w-6xl h-[90vh]">
+                    <Suspense fallback={<ProjectsLoader />}>
+                      <ProjectsWrapper
+                        onClose={() => handleCloseWindow("projects")}
+                      />
+                    </Suspense>
                   </Window>
                 </motion.div>
               )}

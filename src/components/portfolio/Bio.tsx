@@ -1,4 +1,3 @@
-
 "use client";
 
 import { WindowHeader } from "@/components/retro/WindowHeader";
@@ -20,14 +19,20 @@ import {
   IconC,
   IconCPP,
   IconFigma,
+  IconTypeScript,
+  IconPrisma,
+  IconPostgreSQL,
+  IconMySQL,
+  IconTailwindCSS,
+  IconFirebase
 } from "@/components/portfolio/SkillIcons";
 import { cn } from "@/lib/utils";
-
 
 const skillIcons = [
   { name: "HTML", icon: <IconHTML />, color: "#E44D26" },
   { name: "CSS", icon: <IconCSS />, color: "#1572B6" },
   { name: "JavaScript", icon: <IconJS />, color: "#F0DB4F" },
+  { name: "TypeScript", icon: <IconTypeScript />, color: "#007ACC" },
   { name: "PHP", icon: <IconPHP />, color: "#777BB3" },
   { name: "Python", icon: <IconPython />, color: "#306998" },
   { name: "Java", icon: <IconJava />, color: "#0074BD" },
@@ -39,6 +44,11 @@ const skillIcons = [
   { name: "C++", icon: <IconCPP />, color: "#00599C" },
   { name: "C#", icon: <IconCSharp />, color: "#9B4F96" },
   { name: "Figma", icon: <IconFigma />, color: "#F24E1E" },
+  { name: "Prisma", icon: <IconPrisma />, color: "#0C344B" },
+  { name: "PostgreSQL", icon: <IconPostgreSQL />, color: "#336791" },
+  { name: "MySQL", icon: <IconMySQL />, color: "#4479A1" },
+  { name: "Tailwind CSS", icon: <IconTailwindCSS />, color: "#38B2AC" },
+  { name: "Firebase", icon: <IconFirebase />, color: "#FFCA28" },
 ];
 
 export function Bio({
@@ -64,9 +74,9 @@ export function Bio({
               <Image
                 src="https://i.ibb.co/b09NZHc/Yuhan.png"
                 alt="Yuhan Picos"
-                width={140}
-                height={140}
-                className="rounded-full border-4 border-black shadow-md float-left mr-4 mb-4"
+                width={120}
+                height={120}
+                className="rounded-full border-4 border-black shadow-md float-left mr-4 mb-2"
                 style={{
                   shapeOutside: "circle(50%)",
                 }}
@@ -78,13 +88,13 @@ export function Bio({
             </div>
           </div>
 
-          <div className="border-t-2 border-dashed border-black pt-2 mt-12"></div>
+          <div className="border-t-2 border-dashed border-black"></div>
 
           <div>
             <h2 className="text-lg font-bold font-display mb-4 text-center">
               SKILLS
             </h2>
-            <div className="w-full flex flex-wrap gap-7 items-center justify-center mb-4">
+            <div className="w-full flex flex-wrap gap-2 items-center justify-center mb-4">
               {skillIcons.map((skill, index) => (
                 <button
                   key={index}

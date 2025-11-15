@@ -113,7 +113,7 @@ const BatteryIcon = () => (
 
 export function Header() {
   return (
-    <header className="border-b-4 border-black p-2 flex justify-between items-center flex-shrink-0">
+    <header className="border-b-4 border-black p-2 flex justify-between items-center flex-shrink-0 bg-grid-pattern-more-lines">
       <div className="flex items-end gap-2 flex-grow">
         <h1 className="text-3xl font-bold font-display leading-none whitespace-nowrap">
           YuhanPicos

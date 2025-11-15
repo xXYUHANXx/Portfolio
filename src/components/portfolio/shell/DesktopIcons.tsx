@@ -59,7 +59,7 @@ export function DesktopIcons({
                 className="w-16 h-16"
               />
             </div>
-            <span className="font-mono text-sm bg-white px-1">{name}</span>
+            <span className="font-mono text-sm px-1 ">{name}</span>
           </button>
         ))}
       </div>

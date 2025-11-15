@@ -4,6 +4,7 @@ import Image from "next/image";
 import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React from "react";
+import { VideoBackground } from "@/components/VideoBackground";
 
 const skills = [
   { label: "Thinking Capacity", value: "Just enough to get by" },
@@ -25,6 +26,7 @@ export function About({
 }) {
   return (
     <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full">
+      <VideoBackground />
       <WindowHeader title={title} onClose={onClose} />
       <ScrollArea className="flex-grow">
         <div className="p-6">

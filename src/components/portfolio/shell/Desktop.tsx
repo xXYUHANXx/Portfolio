@@ -10,12 +10,16 @@ import { Projects } from "@/components/portfolio/projects/Projects";
 import { Terminal } from "@/components/portfolio/shell/Terminal";
 import { Bio } from "@/components/portfolio/about/Bio";
 import { MyPC } from "@/components/portfolio/my-pc/MyPC";
+import { OSDrive } from "@/components/portfolio/my-pc/OsDrive";
 import { RecycleBin } from "@/components/portfolio/recycle-bin/RecycleBin";
 import { DesktopIcons } from "@/components/portfolio/shell/DesktopIcons";
 import { AlertWindow } from "@/components/portfolio/shell/AlertWindow";
 import { SystemMonitor } from "@/components/portfolio/shell/SystemMonitor";
 import { CV } from "@/components/portfolio/cv/CV";
-import { fetchGitHubProjects, Project } from "@/lib/github";
+import { fetchGitHubProjects } from "@/lib/github";
+import type { Project } from "@/domain/projects/entities/Project";
+import { GamesDrive } from "@/components/portfolio/my-pc/GamesDrive";
+import { VideoBackground } from "@/components/VideoBackground";
 
 function ProjectsLoader() {
   return (
@@ -70,6 +74,8 @@ export function Desktop() {
     "my-pc": false,
     "recycle-bin": false,
     cv: false,
+    "os-drive": false,
+    "games-drive": false,
   });
   const [isBioOpen, setIsBioOpen] = React.useState(false);
   const [activeWindow, setActiveWindow] = React.useState<string | null>(null);
@@ -213,6 +219,9 @@ export function Desktop() {
         )}
       </AnimatePresence>
 
+      {/*Video Background*/}
+      <VideoBackground />
+
       <div
         id="printable-cv-container"
         className="flex flex-col w-full h-full bg-white shadow-[inset_0_10px_15px_-10px_rgba(0,0,0,0.3),inset_10px_0_15px_-10px_rgba(0,0,0,0.3),inset_-10px_0_15px_-10px_rgba(0,0,0,0.3)] overflow-hidden rounded-2xl border-4 border-black"
@@ -314,7 +323,7 @@ export function Desktop() {
               {openWindows.projects && (
                 <motion.div
                   className="fixed inset-0 flex items-center justify-center print:hidden"
-                  style={{ zIndex: activeWindow === "projects" ? 20 : 11 }}
+                  style={{ zIndex: activeWindow === "projects" ? 20 : 21 }}
                   onClick={() => handleFocus("projects")}
                   variants={windowAnimation}
                   initial="initial"
@@ -347,6 +356,53 @@ export function Desktop() {
                     <MyPC
                       onClose={() => handleCloseWindow("my-pc")}
                       title="MY PC"
+                      onOpenOSDrive={() => handleIconClick("os-drive")}
+                      onOpenGamesDrive={() => handleIconClick("games-drive")}
+                      onOpenProjects={() => handleIconClick("projects")}
+                    />
+                  </Window>
+                </motion.div>
+              )}
+
+              {openWindows["os-drive"] && (
+                <motion.div
+                  className="fixed inset-0 flex items-center justify-center print:hidden"
+                  style={{
+                    zIndex: activeWindow === "os-drive" ? 20 : 21,
+                  }}
+                  onClick={() => handleFocus("os-drive")}
+                  variants={windowAnimation}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  key="os-drive-window"
+                >
+                  <Window>
+                    <OSDrive
+                      onClose={() => handleCloseWindow("os-drive")}
+                      title="OS (C:)"
+                    />
+                  </Window>
+                </motion.div>
+              )}
+
+              {openWindows["games-drive"] && (
+                <motion.div
+                  className="fixed inset-0 flex items-center justify-center print:hidden"
+                  style={{
+                    zIndex: activeWindow === "games-drive" ? 20 : 21,
+                  }}
+                  onClick={() => handleFocus("games-drive")}
+                  variants={windowAnimation}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  key="games-drive-window"
+                >
+                  <Window>
+                    <GamesDrive
+                      onClose={() => handleCloseWindow("games-drive")}
+                      title="Games (D:)"
                     />
                   </Window>
                 </motion.div>

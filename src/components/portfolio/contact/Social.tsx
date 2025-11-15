@@ -21,6 +21,7 @@ import { useToast } from "@/hooks/use-toast";
 import { sendEmail } from "@/domain/contact/use-cases/sendContactEmail";
 import { contactFormSchema } from "@/domain/contact/entities/ContactForm";
 import { cn } from "@/lib/utils";
+import { VideoBackground } from "@/components/VideoBackground";
 
 const socialLinks = [
   {
@@ -88,6 +89,7 @@ export function Social({
 
   return (
     <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full">
+      <VideoBackground />
       <WindowHeader title={title} onClose={onClose} />
       <ScrollArea className="flex-grow">
         <div className="p-2 flex flex-col gap-2">
@@ -101,7 +103,7 @@ export function Social({
                 className="flex flex-col items-center gap-2 text-center group transition-transform duration-200 ease-in-out hover:scale-110"
               >
                 <div
-                  className="p-2 rounded-2xl bg-white group-hover:bg-black transition-colors"
+                  className="p-2 rounded-2xl group-hover:bg-black transition-colors"
                   data-ai-hint={link.hint}
                 >
                   <Image

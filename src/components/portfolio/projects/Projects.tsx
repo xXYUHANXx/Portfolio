@@ -7,7 +7,8 @@ import Image from "next/image";
 import { Folder, FolderOpen, Star, GitFork } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import type { Project } from "@/infrastructure/projects/projects-data";
+import type { Project } from "@/domain/projects/entities/Project";
+import { VideoBackground } from "@/components/VideoBackground";
 import {
   IconHTML,
   IconCSS,
@@ -120,6 +121,7 @@ export function Projects({
 
   return (
     <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full overflow-hidden">
+      <VideoBackground />
       <WindowHeader title={title} onClose={onClose} />
       <div className="flex flex-grow min-h-0">
         {/* Left Sidebar */}

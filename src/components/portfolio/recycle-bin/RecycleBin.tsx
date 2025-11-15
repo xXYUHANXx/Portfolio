@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { VideoBackground } from "@/components/VideoBackground";
 
 const deletedFiles = [
   {
@@ -29,17 +30,18 @@ export function RecycleBin({
 }) {
   return (
     <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full w-full">
+      <VideoBackground />
       <WindowHeader title={title} onClose={onClose} />
       <div className="flex justify-end p-2 border-b-2 border-dashed border-black">
         <button
           onClick={onEmpty}
-          className="bg-white border-2 border-black rounded-lg px-4 py-1 hover:bg-gray-100 active:bg-gray-200 shadow-[2px_2px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all text-xs"
+          className="z-10 bg-white border-2 border-black rounded-lg px-4 py-1 hover:bg-gray-100 active:bg-gray-200 shadow-[2px_2px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all text-xs"
         >
           Empty Recycle Bin
         </button>
       </div>
       <ScrollArea className="flex-grow">
-        <div className="p-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-3 gap-4">
+        <div className="p-4 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 gap-8">
           {deletedFiles.map((file) => (
             <div
               key={file.name}

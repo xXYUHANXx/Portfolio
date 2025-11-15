@@ -3,6 +3,7 @@
 import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
+import { VideoBackground } from "@/components/VideoBackground";
 
 import {
   IconHTML,
@@ -24,7 +25,7 @@ import {
   IconPostgreSQL,
   IconMySQL,
   IconTailwindCSS,
-  IconFirebase
+  IconFirebase,
 } from "@/components/portfolio/SkillIcons";
 import { cn } from "@/lib/utils";
 
@@ -63,6 +64,7 @@ export function Bio({
 
   return (
     <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full max-h-[90vh]">
+      <VideoBackground />
       <WindowHeader title={title} onClose={onClose} />
       <ScrollArea className="flex-grow">
         <div className="p-6 space-y-6">

@@ -19,6 +19,7 @@ import { GamesDrive } from "@/components/portfolio/my-pc/GamesDrive";
 import { Dock } from "@/components/portfolio/shell-mobile/Dock";
 import { MainIcons } from "@/components/portfolio/shell-mobile/MainIcons";
 import { MobileProjects } from "@/components/portfolio/projects/MobileProjects";
+import { MobileContact } from "@/components/portfolio/contact/MobileContact";
 
 
 function ProjectsLoader() {
@@ -106,16 +107,13 @@ export function MobileDesktop() {
   };
 
   const handleHomeClick = () => {
-    setOpenWindows({
-      about: false,
-      contact: false,
-      projects: false,
-      "my-pc": false,
-      "recycle-bin": false,
-      cv: false,
-      "os-drive": false,
-      "games-drive": false,
-    });
+    // Close all windows by setting their state to false
+    const allClosed = Object.keys(openWindows).reduce((acc, key) => {
+      acc[key] = false;
+      return acc;
+    }, {} as { [key: string]: boolean });
+  
+    setOpenWindows(allClosed);
     setIsBioOpen(false);
     setActiveWindow(null);
   };
@@ -180,7 +178,8 @@ export function MobileDesktop() {
     <AnimatePresence>
       {openWindows[id] && (
         <motion.div
-          className="absolute inset-0 z-20 bg-white"
+          className="absolute inset-0 bg-white"
+          style={{ zIndex: activeWindow === id ? 21 : 20 }}
           variants={windowAnimation}
           initial="initial"
           animate="animate"
@@ -216,6 +215,7 @@ export function MobileDesktop() {
           {isBioOpen && (
             <motion.div
               className="absolute inset-0 z-20 bg-white"
+              style={{ zIndex: activeWindow === "bio" ? 22 : 19 }}
               variants={windowAnimation}
               initial="initial"
               animate="animate"
@@ -237,10 +237,7 @@ export function MobileDesktop() {
 
           {renderWindow(
             "contact",
-            <Social
-              onClose={() => handleCloseWindow("contact")}
-              title="CONTACT"
-            />
+            <MobileContact />
           )}
 
           {renderWindow(

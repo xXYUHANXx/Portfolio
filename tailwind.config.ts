@@ -17,6 +17,9 @@ export default {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        "auto-fit-150": "repeat(auto-fit, minmax(150px, 1fr))",
+      },
       fontFamily: {
         sans: ['"Space Grotesk"', ...fontFamily.sans],
         display: ['"Press Start 2P"', ...fontFamily.sans],

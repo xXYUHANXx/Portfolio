@@ -19,7 +19,7 @@ import { CV } from "@/components/portfolio/cv/CV";
 import { fetchGitHubProjects } from "@/lib/github";
 import type { Project } from "@/domain/projects/entities/Project";
 import { GamesDrive } from "@/components/portfolio/my-pc/GamesDrive";
-import { VideoBackground } from "@/components/VideoBackground";
+import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 
 function ProjectsLoader() {
   return (
@@ -212,10 +212,9 @@ export function Desktop() {
       </AnimatePresence>
 
       <div className="flex flex-col w-full h-full bg-white shadow-[inset_0_10px_15px_-10px_rgba(0,0,0,0.3),inset_10px_0_15px_-10px_rgba(0,0,0,0.3),inset_-10px_0_15px_-10px_rgba(0,0,0,0.3)] overflow-hidden rounded-2xl border-4 border-black">
-        <VideoBackground/>
         <Header />
-        <div id="desktop-content" className="relative flex-1 scanline-overlay">
-          <main className="relative flex-1 p-8 bg-grid-pattern-more-lines h-full">
+        <div id="desktop-content" className="relative flex-1">
+          <main className="relative flex-1 h-full p-4 md:p-8">
             <AnimatePresence>
               {openWindows.about && (
                 <motion.div
@@ -233,7 +232,7 @@ export function Desktop() {
                   exit="exit"
                   key="about-window"
                 >
-                  <Window>
+                  <Window className="w-[60vw] h-[90vh]">
                     <About
                       onClose={() => handleCloseWindow("about")}
                       title="ABOUT ME"
@@ -258,8 +257,8 @@ export function Desktop() {
                   exit="exit"
                   key="bio-window"
                 >
-                  <Window>
-                    <Bio onClose={handleCloseBio} title="BIO & SKILLS" />
+                  <Window className="w-[60vw] h-[90vh]">
+                    <Bio onClose={handleCloseBio} />
                   </Window>
                 </motion.div>
               )}
@@ -277,7 +276,7 @@ export function Desktop() {
                   exit="exit"
                   key="cv-window"
                 >
-                  <Window className="w-[90vw] max-w-4xl h-[90vh]">
+                  <Window className="w-[60vw] h-[90vh]">
                     <CV
                       onClose={() => handleCloseWindow("cv")}
                       title="CURRICULUM VITAE"
@@ -298,7 +297,7 @@ export function Desktop() {
                   exit="exit"
                   key="contact-window"
                 >
-                  <Window>
+                  <Window className="w-[60vw] h-[90vh]">
                     <Social
                       onClose={() => handleCloseWindow("contact")}
                       title="CONTACT"
@@ -318,7 +317,7 @@ export function Desktop() {
                   exit="exit"
                   key="projects-window"
                 >
-                  <Window className="w-[90vw] max-w-6xl h-[90vh]">
+                  <Window className="w-[90vw] h-[90vh]">
                     <Suspense fallback={<ProjectsLoader />}>
                       <ProjectsWrapper
                         onClose={() => handleCloseWindow("projects")}
@@ -408,7 +407,7 @@ export function Desktop() {
                   exit="exit"
                   key="recycle-bin-window"
                 >
-                  <Window>
+                  <Window className="w-[60vw] h-[80vh]">
                     <RecycleBin
                       onClose={() => handleCloseWindow("recycle-bin")}
                       title="RECYCLE BIN"

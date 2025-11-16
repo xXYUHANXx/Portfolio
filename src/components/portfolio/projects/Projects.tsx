@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import { Folder, FolderOpen, Star, GitFork } from "lucide-react";
@@ -38,6 +37,7 @@ import {
   IconPrisma,
   IconPostgreSQL,
 } from "@/components/portfolio/SkillIcons";
+import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
 
 const topicDetails: {
   [key: string]: { color: string; icon: React.ReactNode };
@@ -120,7 +120,7 @@ export function Projects({
   }
 
   return (
-    <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full overflow-hidden max-h-full">
+    <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full overflow-hidden">
       <VideoBackground />
       <WindowHeader title={title} onClose={onClose} />
       <div className="flex flex-grow min-h-0">
@@ -202,7 +202,7 @@ export function Projects({
                         </div>
                       )}
                     </div>
-                    <p className="text-sm leading-relaxed mb-6">
+                    <p className="text-sm leading-relaxed mb-6 font-mono">
                       {selectedProject.description ||
                         "No description provided for this repository."}
                     </p>
@@ -236,7 +236,7 @@ export function Projects({
                                 {detail.icon}
                               </div>
                             )}
-                            <span>{topic}</span>
+                            <span className="font-mono">{topic}</span>
                           </button>
                         );
                       })}

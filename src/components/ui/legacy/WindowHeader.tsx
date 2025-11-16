@@ -1,11 +1,10 @@
 "use client";
 
 type WindowHeaderProps = {
-  title: string;
   onClose: () => void;
 };
 
-export function WindowHeader({ title, onClose }: WindowHeaderProps) {
+export function WindowHeader({ onClose }: WindowHeaderProps) {
   return (
     <div className="handle flex items-center p-2 border-b-4 border-black cursor-move relative flex-shrink-0 bg-white rounded-t-[36px] bg-grid-pattern-more-lines">
       <button

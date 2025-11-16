@@ -2,17 +2,11 @@
 
 import React, { Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Window } from "@/components/ui/legacy/Window";
-import { About } from "@/components/portfolio/about/About";
 import { Header } from "@/components/portfolio/shell-mobile/Header";
-import { Social } from "@/components/portfolio/contact/Social";
-import { Projects } from "@/components/portfolio/projects/Projects";
-import { Bio } from "@/components/portfolio/about/Bio";
 import { MyPC } from "@/components/portfolio/my-pc/MyPC";
 import { OSDrive } from "@/components/portfolio/my-pc/OsDrive";
 import { RecycleBin } from "@/components/portfolio/recycle-bin/RecycleBin";
 import { AlertWindow } from "@/components/portfolio/shell/AlertWindow";
-import { CV } from "@/components/portfolio/cv/CV";
 import { fetchGitHubProjects } from "@/lib/github";
 import type { Project } from "@/domain/projects/entities/Project";
 import { GamesDrive } from "@/components/portfolio/my-pc/GamesDrive";
@@ -20,25 +14,21 @@ import { Dock } from "@/components/portfolio/shell-mobile/Dock";
 import { MainIcons } from "@/components/portfolio/shell-mobile/MainIcons";
 import { MobileProjects } from "@/components/portfolio/projects/MobileProjects";
 import { MobileContact } from "@/components/portfolio/contact/MobileContact";
-
+import { MobileAbout } from "@/components/portfolio/about/MobileAbout";
+import { MobileBio } from "@/components/portfolio/about/MobileBio";
+import { MobileCV } from "@/components/portfolio/cv/MobileCV";
 
 function ProjectsLoader() {
   return (
-    <Window className="w-full h-full p-2">
-      <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-lg shadow-lg bg-white flex flex-col flex-grow h-full overflow-hidden">
-        <div className="flex justify-center items-center h-full">
-          <p>Loading GitHub Projects...</p>
-        </div>
+    <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-lg shadow-lg bg-white flex flex-col flex-grow h-full overflow-hidden">
+      <div className="flex justify-center items-center h-full">
+        <p>Loading GitHub Projects...</p>
       </div>
-    </Window>
+    </div>
   );
 }
 
-function ProjectsWrapper({
-  isMobile,
-}: {
-  isMobile: boolean;
-}) {
+function ProjectsWrapper() {
   const [projects, setProjects] = React.useState<Project[]>([]);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -56,21 +46,15 @@ function ProjectsWrapper({
 
   if (error) {
     return (
-      <Window className="w-full h-full p-2">
-        <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-lg shadow-lg bg-white flex flex-col flex-grow h-full overflow-hidden">
-          <div className="flex justify-center items-center h-full text-red-500">
-            <p>Error loading projects: {error}</p>
-          </div>
+      <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-lg shadow-lg bg-white flex flex-col flex-grow h-full overflow-hidden">
+        <div className="flex justify-center items-center h-full text-red-500">
+          <p>Error loading projects: {error}</p>
         </div>
-      </Window>
+      </div>
     );
   }
 
-  if (isMobile) {
-    return <MobileProjects projects={projects} />;
-  }
-
-  return <Projects onClose={() => {}} title="PROYECTOS" projects={projects} />;
+  return <MobileProjects projects={projects} />;
 }
 
 export function MobileDesktop() {
@@ -102,7 +86,15 @@ export function MobileDesktop() {
   const handleCloseWindow = (id: string) => {
     setOpenWindows((prev) => ({ ...prev, [id]: false }));
     if (activeWindow === id) {
-      setActiveWindow(null);
+      // Find the next available window to set as active
+      const openWindowKeys = Object.keys(openWindows).filter(
+        (key) => key !== id && openWindows[key]
+      );
+      setActiveWindow(
+        openWindowKeys.length > 0
+          ? openWindowKeys[openWindowKeys.length - 1]
+          : null
+      );
     }
   };
 
@@ -112,7 +104,7 @@ export function MobileDesktop() {
       acc[key] = false;
       return acc;
     }, {} as { [key: string]: boolean });
-  
+
     setOpenWindows(allClosed);
     setIsBioOpen(false);
     setActiveWindow(null);
@@ -129,7 +121,11 @@ export function MobileDesktop() {
 
   const handleCloseBio = () => {
     setIsBioOpen(false);
-    setActiveWindow("about");
+    if (openWindows.about) {
+      setActiveWindow("about");
+    } else {
+      setActiveWindow(null);
+    }
   };
 
   const handleCloseAlert = () => {
@@ -201,51 +197,45 @@ export function MobileDesktop() {
 
           {renderWindow(
             "about",
-            <About
-              onClose={() => handleCloseWindow("about")}
-              title="ABOUT ME"
+            <MobileAbout
               onOpenSkills={() => {
                 setIsBioOpen(true);
-                setActiveWindow("bio");
+                setActiveWindow("bio"); // Set bio as active when opened
               }}
               onOpenCV={() => handleIconClick("cv")}
             />
           )}
 
-          {isBioOpen && (
-            <motion.div
-              className="absolute inset-0 z-20 bg-white"
-              style={{ zIndex: activeWindow === "bio" ? 22 : 19 }}
-              variants={windowAnimation}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              key="bio-window"
-            >
-              <Bio onClose={handleCloseBio} title="BIO & SKILLS" />
-            </motion.div>
-          )}
+          <AnimatePresence>
+            {isBioOpen && (
+              <motion.div
+                className="absolute inset-0 z-20 bg-white"
+                style={{ zIndex: activeWindow === "bio" ? 22 : 19 }}
+                variants={windowAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                key="bio-window"
+              >
+                <MobileBio onBack={handleCloseBio} />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {renderWindow(
             "cv",
-            <CV
-              onClose={() => handleCloseWindow("cv")}
-              title="CURRICULUM VITAE"
+            <MobileCV
+              onBack={() => handleCloseWindow("cv")}
               onPrint={handlePrintCV}
             />
           )}
 
-          {renderWindow(
-            "contact",
-            <MobileContact />
-          )}
+          {renderWindow("contact", <MobileContact />)}
 
           {renderWindow(
             "projects",
             <Suspense fallback={<ProjectsLoader />}>
-              <ProjectsWrapper
-                isMobile={true}
-              />
+              <ProjectsWrapper />
             </Suspense>
           )}
 

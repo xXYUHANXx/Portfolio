@@ -4,14 +4,14 @@ import Image from "next/image";
 
 const mainIcons = [
   {
-    id: "projects",
-    name: "Projects",
-    iconSrc: "https://i.ibb.co/sJbKF4XM/Projects.png",
-  },
-  {
     id: "my-pc",
     name: "Miscellaneous",
     iconSrc: "https://i.ibb.co/1G8bwQhf/pccom.png",
+  },
+  {
+    id: "projects",
+    name: "Projects",
+    iconSrc: "https://i.ibb.co/sJbKF4XM/Projects.png",
   },
   {
     id: "about",
@@ -19,14 +19,14 @@ const mainIcons = [
     iconSrc: "https://i.ibb.co/G315Npm3/About-Me.png",
   },
   {
-    id: "cv",
-    name: "Resume",
-    iconSrc: "https://i.ibb.co/qLWrRtZW/Resume.png",
-  },
-  {
     id: "contact",
     name: "Contact",
     iconSrc: "https://i.ibb.co/RT5GfGch/contact.png",
+  },
+  {
+    id: "cv",
+    name: "Resume",
+    iconSrc: "https://i.ibb.co/qLWrRtZW/Resume.png",
   },
 ];
 

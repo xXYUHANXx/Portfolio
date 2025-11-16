@@ -3,7 +3,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import React from "react";
-import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
+import { ArrowLeft } from "lucide-react";
 
 import {
   IconHTML,
@@ -36,7 +36,7 @@ type Skill = {
   color: string;
 };
 
-const skillCategories: { title: string; skills: Skill[] }[] = [
+const skillCategories = [
   {
     title: "Frontend",
     skills: [
@@ -90,86 +90,102 @@ const socialSkills = [
   { name: "Creatividad", color: "#F59E0B" },
 ];
 
-export function Bio({ onClose }: { onClose: () => void }) {
+export function MobileBio({ onBack }: { onBack: () => void }) {
   const bioText =
     "Estudiante del séptimo semestre de Informática, apasionado por la tecnología y el desarrollo de software. Tengo experiencia práctica en un amplio espectro de lenguajes, incluyendo Python, Java, JavaScript y C#, y me especializo en la creación de experiencias web modernas con React y Next.js. Soy un profesional en formación, proactivo y siempre dispuesto a colaborar para entregar soluciones tecnológicas de alto impacto.";
 
   return (
-    <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col h-full max-h-[90vh]">
-      <WindowHeader title="BIO & SKILLS" onClose={onClose} />
+    <div className="w-full h-full flex flex-col bg-white bg-grid-pattern-more-lines">
+      {/* HEADER */}
+      <div className="p-4 text-center relative flex items-center justify-center border-b-2 border-black">
+        <button
+          onClick={onBack}
+          className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-gray-100"
+        >
+          <ArrowLeft size={24} />
+        </button>
 
-      {/* SCROLL GLOBAL */}
-      <ScrollArea className="flex-grow p-2">
-        <div className="flex flex-col w-full gap-6">
-          {/* BIO */}
+        <div className="py-2 px-6 border-2 border-black rounded-full font-semibold shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white text-sm font-mono">
+          BIO & SKILLS
+        </div>
+      </div>
+
+      {/* BODY */}
+      <ScrollArea className="flex-grow">
+        <div className="p-2 gap-4 flex flex-col">
+          {/* BIO SECTION */}
           <div>
-            <h2 className="text-lg font-bold font-display p-2 text-center border-b-2 border-black">
-              BIO
-            </h2>
-
             <div className="p-4">
-              <div className="clearfix">
+              <div className="max-w-full">
                 <Image
                   src="https://i.ibb.co/b09NZHc/Yuhan.png"
                   alt="Yuhan Picos"
-                  width={160}
-                  height={160}
-                  className="rounded-full border-4 border-black shadow-md float-left mr-4 mb-2"
+                  width={140}
+                  height={140}
+                  className="float-left mr-4 mb-2 rounded-full border-4 border-black shadow-md"
                 />
-                <p className="text-base text-justify leading-relaxed">
+
+                <p className="text-base text-justify leading-relaxed font-mono">
                   {bioText}
                 </p>
               </div>
             </div>
           </div>
+
           {/* SKILLS */}
           <div>
             <h2 className="text-lg font-bold font-display p-2 text-center border-b-2 border-black">
               SKILLS
             </h2>
 
-            <div className="p-4 space-y-6">
-              {skillCategories.map((category) => (
-                <div key={category.title}>
-                  <h3 className="font-display text-md mb-3">
-                    {category.title}
-                  </h3>
+            <ScrollArea>
+              <div className="space-y-8">
+                {skillCategories.map((category) => (
+                  <div key={category.title}>
+                    <h3 className="font-display text-md p-2">
+                      {category.title}
+                    </h3>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                    {category.skills.map((skill) => (
-                      <button
-                        key={skill.name}
-                        className="group flex items-center justify-center gap-2 bg-white border-2 border-black rounded-md px-3 py-1.5 text-xs shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:text-white active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.backgroundColor = skill.color;
-                          e.currentTarget.style.borderColor = skill.color;
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.backgroundColor = "white";
-                          e.currentTarget.style.borderColor = "black";
-                        }}
-                      >
-                        <div className="group-hover:invert">{skill.icon}</div>
-                        <span>{skill.name}</span>
-                      </button>
-                    ))}
+                    {/* 2 columnas mínimo */}
+                    <div className="grid grid-cols-2 gap-3">
+                      {category.skills.map((skill) => (
+                        <button
+                          key={skill.name}
+                          className="group w-full flex items-center justify-center gap-2 bg-white border-2 border-black rounded-md px-3 py-1.5 shadow-[2px_2px_0_rgba(0,0,0,1)] hover:text-white active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all text-xs"
+                          onMouseOver={(e) => {
+                            e.currentTarget.style.backgroundColor = skill.color;
+                            e.currentTarget.style.borderColor = skill.color;
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.style.backgroundColor = "white";
+                            e.currentTarget.style.borderColor = "black";
+                          }}
+                        >
+                          <div className="group-hover:invert">{skill.icon}</div>
+                          <span className="font-mono text-center">
+                            {skill.name}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </ScrollArea>
           </div>
+
           {/* SOCIAL SKILLS */}
           <div>
             <h2 className="text-lg font-bold font-display p-2 text-center border-b-2 border-black">
               SOCIAL SKILLS
             </h2>
 
-            <div className="p-4">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <ScrollArea className="p-4 max-h-[250px] min-h-[150px]">
+              <div className="grid grid-cols-2 gap-3">
                 {socialSkills.map((skill, index) => (
                   <button
                     key={index}
-                    className="flex items-center justify-center bg-white border-2 border-black rounded-md px-3 py-1.5 text-xs shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:text-white active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
+                    className="w-full flex items-center justify-center bg-white border-2 border-black rounded-md px-3 py-1.5 text-xs shadow-[2px_2px_0_rgba(0,0,0,1)] hover:text-white active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
                     onMouseOver={(e) => {
                       e.currentTarget.style.backgroundColor = skill.color;
                       e.currentTarget.style.borderColor = skill.color;
@@ -179,11 +195,11 @@ export function Bio({ onClose }: { onClose: () => void }) {
                       e.currentTarget.style.borderColor = "black";
                     }}
                   >
-                    <span>{skill.name}</span>
+                    <span className="font-mono">{skill.name}</span>
                   </button>
                 ))}
               </div>
-            </div>
+            </ScrollArea>
           </div>
         </div>
       </ScrollArea>

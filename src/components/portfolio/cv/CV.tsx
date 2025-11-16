@@ -48,7 +48,7 @@ export function CV({
                     className="flex items-center gap-2 hover:text-gray-300"
                   >
                     <Mail size={16} />
-                    <span>yuhanpicos.dev@gmail.com</span>
+                    <span>yuhanpicos740@gmail.com</span>
                   </a>
                   <a
                     href="https://wa.me/+584164973499"

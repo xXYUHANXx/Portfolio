@@ -86,7 +86,6 @@ export function MobileDesktop() {
   const handleCloseWindow = (id: string) => {
     setOpenWindows((prev) => ({ ...prev, [id]: false }));
     if (activeWindow === id) {
-      // Find the next available window to set as active
       const openWindowKeys = Object.keys(openWindows).filter(
         (key) => key !== id && openWindows[key]
       );
@@ -99,7 +98,6 @@ export function MobileDesktop() {
   };
 
   const handleHomeClick = () => {
-    // Close all windows by setting their state to false
     const allClosed = Object.keys(openWindows).reduce((acc, key) => {
       acc[key] = false;
       return acc;
@@ -136,27 +134,27 @@ export function MobileDesktop() {
   const handlePrintCV = () => {
     const printContainerId = "print-container";
 
+    // Elige el CV según pantalla
+    const printableContent =
+      document.getElementById("printable-mobile-cv") ||
+      document.getElementById("printable-cv");
+    if (!printableContent) return;
+
     const existingContainer = document.getElementById(printContainerId);
     if (existingContainer) {
       existingContainer.remove();
     }
-
-    const printableContent = document.getElementById("printable-cv");
-    if (!printableContent) return;
 
     const contentToPrint = printableContent.cloneNode(true) as HTMLElement;
 
     const printContainer = document.createElement("div");
     printContainer.id = printContainerId;
     printContainer.appendChild(contentToPrint);
-
     document.body.appendChild(printContainer);
 
     window.onafterprint = () => {
       const container = document.getElementById(printContainerId);
-      if (container) {
-        container.remove();
-      }
+      if (container) container.remove();
       window.onafterprint = null;
     };
 
@@ -200,7 +198,7 @@ export function MobileDesktop() {
             <MobileAbout
               onOpenSkills={() => {
                 setIsBioOpen(true);
-                setActiveWindow("bio"); // Set bio as active when opened
+                setActiveWindow("bio");
               }}
               onOpenCV={() => handleIconClick("cv")}
             />

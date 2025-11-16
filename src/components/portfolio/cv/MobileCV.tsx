@@ -20,6 +20,7 @@ export function MobileCV({
 }) {
   return (
     <div className="w-full h-full flex flex-col bg-white font-mono">
+      {/* Header */}
       <div className="p-4 flex items-center justify-between border-b-2 border-black sticky top-0 bg-white z-10">
         <button
           onClick={onBack}
@@ -40,8 +41,9 @@ export function MobileCV({
         </button>
       </div>
 
+      {/* CV content */}
       <ScrollArea className="flex-grow">
-        <div id="printable-cv">
+        <div id="printable-mobile-cv">
           <div className="max-w-4xl mx-auto bg-white">
             {/* Header */}
             <header className="bg-gray-800 text-white p-6 print:p-4 font-mono">
@@ -60,7 +62,7 @@ export function MobileCV({
                   className="flex items-center gap-2 hover:text-gray-300"
                 >
                   <Mail size={14} />
-                  <span>yuhanpicos.dev@gmail.com</span>
+                  <span>yuhanpicos740@gmail.com</span>
                 </a>
 
                 <a
@@ -105,12 +107,10 @@ export function MobileCV({
 
                 <p className="text-justify leading-relaxed">
                   Estudiante del séptimo semestre de Informática, apasionado por
-                  la tecnología y el desarrollo de software. Cuento con
-                  experiencia práctica en diversos lenguajes como Python, Java,
-                  JavaScript y C#, con especial enfoque en la construcción de
-                  aplicaciones web modernas utilizando React y Next.js. Me
-                  considero una persona proactiva, con disposición para aprender
-                  y aportar soluciones tecnológicas eficientes.
+                  la tecnología y el desarrollo de software. Experiencia en
+                  Python, Java, JavaScript, C# y desarrollo web con React y
+                  Next.js. Proactivo, con disposición para aprender y aportar
+                  soluciones eficientes.
                 </p>
               </section>
 
@@ -189,8 +189,8 @@ export function MobileCV({
                   </p>
 
                   <p className="mt-1">
-                    Cursando el séptimo semestre, con enfoque en desarrollo de
-                    software y sistemas de información.
+                    Séptimo semestre, enfoque en desarrollo de software y
+                    sistemas de información.
                   </p>
                 </div>
               </section>
@@ -207,8 +207,7 @@ export function MobileCV({
                       Cargo Track — App de Logística Full-Stack
                     </h3>
                     <p className="text-justify leading-relaxed">
-                      Aplicación full-stack para la gestión de envíos, diseñada
-                      para la asignatura "Diseño de Base de Datos". Permite
+                      Aplicación full-stack para la gestión de envíos. Permite
                       registro de usuarios, cotizaciones y seguimiento en tiempo
                       real, además de un panel administrativo para manejo de
                       rutas y logística.
@@ -220,9 +219,9 @@ export function MobileCV({
                       Momentos Robin Hood — App de Recetas con IA
                     </h3>
                     <p className="text-justify leading-relaxed">
-                      Plataforma web de recetas venezolanas desarrollada con
-                      Next.js, Firebase y tecnologías de Google AI, ofreciendo
-                      una experiencia moderna y dinámica para el usuario.
+                      Plataforma web de recetas desarrollada con Next.js,
+                      Firebase y Google AI, ofreciendo una experiencia moderna y
+                      dinámica.
                     </p>
                   </div>
                 </div>

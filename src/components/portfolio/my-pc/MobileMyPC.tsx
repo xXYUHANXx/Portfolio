@@ -1,4 +1,3 @@
-
 "use client";
 
 import { ArrowLeft } from "lucide-react";
@@ -23,15 +22,10 @@ export function MobileMyPC({ onBack }: { onBack: () => void }) {
   return (
     <div className="w-full h-full flex flex-col bg-white">
       {/* Header */}
-      <div className="p-4 flex items-center justify-between border-b-2 border-black sticky top-0 bg-white z-10">
-        <button
-          onClick={onBack}
-          className="p-2 rounded-full hover:bg-gray-100"
-          aria-label="Back"
-        >
-          <ArrowLeft size={24} />
+      <div className="p-4 text-center border-b-2 border-black">
+        <button className="w-auto inline-block text-center py-2 px-6 border-2 border-black rounded-full  font-semibold shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white text-sm">
+          DEVICE INFO
         </button>
-        <span className="font-display text-sm">Device Info</span>
         <div className="w-8"></div>
       </div>
 
@@ -39,9 +33,7 @@ export function MobileMyPC({ onBack }: { onBack: () => void }) {
         <div className="p-6 font-mono text-sm space-y-8">
           {/* Storage Section */}
           <div>
-            <h2 className="text-base font-bold font-display mb-4">
-              Storage
-            </h2>
+            <h2 className="text-base font-bold font-display mb-4">Storage</h2>
             <div className="space-y-3">
               <div>
                 <div className="flex justify-between mb-1">

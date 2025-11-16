@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -12,7 +11,13 @@ import {
 import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-export function MobileCV({ onBack, onPrint }: { onBack: () => void, onPrint: () => void }) {
+export function MobileCV({
+  onBack,
+  onPrint,
+}: {
+  onBack: () => void;
+  onPrint: () => void;
+}) {
   return (
     <div className="w-full h-full flex flex-col bg-white">
       {/* Header */}
@@ -24,9 +29,9 @@ export function MobileCV({ onBack, onPrint }: { onBack: () => void, onPrint: () 
         >
           <ArrowLeft size={24} />
         </button>
-        <span className="font-semibold font-display text-sm">
+        <button className="w-auto inline-block text-center py-2 px-6 border-2 border-black rounded-full  font-semibold shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white text-xs">
           CURRICULUM VITAE
-        </span>
+        </button>
         <button
           onClick={onPrint}
           className="p-2 rounded-full hover:bg-gray-100"
@@ -75,7 +80,7 @@ export function MobileCV({ onBack, onPrint }: { onBack: () => void, onPrint: () 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-gray-300 transition-transform hover:scale-110"
-                   title="GitHub: xXYUHANXx"
+                  title="GitHub: xXYUHANXx"
                 >
                   <Github size={20} />
                 </a>

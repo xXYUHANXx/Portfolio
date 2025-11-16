@@ -14,6 +14,7 @@ const biosLines = [
   "<<<<<Fixed Disk 0: Seagate ST32531A (Sturdy as a Seagate)",
   "<<<<<Mouse initialized (It's not a real mouse, don't worry)",
   "",
+  "<<<<<Press <F2> to enter SETUP, <F3> to see a meme",
 ];
 
 const welcomeLines = [
@@ -72,11 +73,11 @@ export function Terminal({
             return newHistory;
           });
           charIndex++;
-          timeoutId = setTimeout(type, 10);
+          timeoutId = setTimeout(type, 1); // Faster typing
         } else {
           lineIndex++;
           charIndex = 0;
-          timeoutId = setTimeout(type, 40);
+          timeoutId = setTimeout(type, 20); // Faster line break
         }
       } else {
         setTimeout(() => {
@@ -85,7 +86,7 @@ export function Terminal({
           if (onAnimationComplete) {
             onAnimationComplete();
           }
-        }, 500);
+        }, 300); // Faster transition to desktop
       }
     };
 
@@ -204,7 +205,13 @@ export function Terminal({
         )}
       >
         {history.map((line, index) => (
-          <p key={index} className="whitespace-pre-wrap">
+          <p
+            key={index}
+            className={cn(
+              "whitespace-pre-wrap",
+              isBooting && "text-glow"
+            )}
+          >
             {line}
           </p>
         ))}

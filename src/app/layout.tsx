@@ -1,6 +1,9 @@
+
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import React from "react";
+import { ClickSoundProvider } from "@/components/portfolio/ClickSoundProvider";
 
 export const metadata: Metadata = {
   title: "YuhanPicos Portfolio",
@@ -50,7 +53,9 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="font-sans antialiased">
-        <div id="printable-cv-container">{children}</div>
+        <ClickSoundProvider>
+          <div id="printable-cv-container">{children}</div>
+        </ClickSoundProvider>
         <Toaster />
       </body>
     </html>

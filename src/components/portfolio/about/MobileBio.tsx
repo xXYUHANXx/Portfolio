@@ -105,7 +105,7 @@ export function MobileBio({ onBack }: { onBack: () => void }) {
           <ArrowLeft size={24} />
         </button>
 
-        <div className="py-2 px-6 border-2 border-black rounded-full font-semibold shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white text-sm font-mono">
+        <div className="py-2 px-6 border-2 border-black rounded-full font-semibold shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white text-sm font-display">
           BIO & SKILLS
         </div>
       </div>

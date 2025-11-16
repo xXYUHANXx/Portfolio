@@ -19,6 +19,7 @@ export function MobileCV({
 }) {
   return (
     <div className="w-full h-full flex flex-col bg-white font-mono">
+
       {/* HEADER SUPERIOR */}
       <div className="p-4 flex items-center justify-between border-b-2 border-black sticky top-0 bg-white z-10">
         <button
@@ -46,6 +47,7 @@ export function MobileCV({
       <div className="flex-grow overflow-visible print:overflow-visible">
         <div id="printable-cv">
           <div className="max-w-4xl mx-auto bg-white">
+
             {/* HEADER DE INFORMACIÓN */}
             <header className="bg-gray-800 text-white p-6 print:p-4 font-mono">
               <div className="text-center">
@@ -101,6 +103,7 @@ export function MobileCV({
 
             {/* MAIN */}
             <main className="p-6 print:p-4 text-gray-800 text-sm font-mono">
+
               {/* PERFIL PROFESIONAL */}
               <section className="mb-6 print:mb-3">
                 <h2 className="text-xl print:text-lg font-display font-bold border-b-2 border-gray-300 pb-1 mb-2">
@@ -125,6 +128,7 @@ export function MobileCV({
                 </h2>
 
                 <div className="space-y-4 print:space-y-2 font-mono">
+
                   <div>
                     <h3 className="text-base font-display font-semibold mb-1">
                       Frontend
@@ -174,6 +178,7 @@ export function MobileCV({
                       <li>WebRTC & WebSockets</li>
                     </ul>
                   </div>
+
                 </div>
               </section>
 
@@ -211,11 +216,11 @@ export function MobileCV({
                       Cargo Track — App de Logística Full-Stack
                     </h3>
                     <p className="text-justify leading-relaxed">
-                      Aplicación full-stack para la gestión de envíos, diseñada
-                      para la asignatura "Diseño de Base de Datos". Permite
-                      registro de usuarios, cotizaciones y seguimiento en tiempo
-                      real, además de un panel administrativo para manejo de
-                      rutas y logística.
+                      Aplicación full-stack para la gestión de envíos,
+                      diseñada para la asignatura "Diseño de Base de Datos".
+                      Permite registro de usuarios, cotizaciones y seguimiento
+                      en tiempo real, además de un panel administrativo para
+                      manejo de rutas y logística.
                     </p>
                   </div>
 
@@ -225,12 +230,14 @@ export function MobileCV({
                     </h3>
                     <p className="text-justify leading-relaxed">
                       Plataforma web de recetas venezolanas desarrollada con
-                      Next.js, Firebase y tecnologías de Google AI, ofreciendo
-                      una experiencia moderna y dinámica para el usuario.
+                      Next.js, Firebase y tecnologías de Google AI,
+                      ofreciendo una experiencia moderna y dinámica para el
+                      usuario.
                     </p>
                   </div>
                 </div>
               </section>
+
             </main>
           </div>
         </div>

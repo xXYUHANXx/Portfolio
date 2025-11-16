@@ -19,7 +19,7 @@ import { CV } from "@/components/portfolio/cv/CV";
 import { fetchGitHubProjects } from "@/lib/github";
 import type { Project } from "@/domain/projects/entities/Project";
 import { GamesDrive } from "@/components/portfolio/my-pc/GamesDrive";
-import { WindowHeader } from "@/components/ui/legacy/WindowHeader";
+import { MinesweeperGame } from "@/components/portfolio/games/minesweeper/MinesweeperGame";
 
 function ProjectsLoader() {
   return (
@@ -76,6 +76,7 @@ export function Desktop() {
     cv: false,
     "os-drive": false,
     "games-drive": false,
+    minesweeper: false,
   });
   const [isBioOpen, setIsBioOpen] = React.useState(false);
   const [activeWindow, setActiveWindow] = React.useState<string | null>(null);
@@ -90,6 +91,16 @@ export function Desktop() {
     setActiveWindow(id);
   };
 
+  const handleOpenAndCloseOthers = (id: string) => {
+    const allClosed = Object.keys(openWindows).reduce((acc, key) => {
+      acc[key] = false;
+      return acc;
+    }, {} as { [key: string]: boolean });
+
+    setOpenWindows({ ...allClosed, [id]: true });
+    setActiveWindow(id);
+  };
+
   const handleCloseWindow = (id: string) => {
     setOpenWindows((prev) => ({ ...prev, [id]: false }));
     if (activeWindow === id) {
@@ -97,13 +108,16 @@ export function Desktop() {
     }
   };
 
-  const handleEmptyRecycleBin = () => {
-    setAlert({
-      isOpen: true,
-      title: "Error",
-      message: "Cannot delete files. They are probably ghosts from another OS.",
-    });
+  const showAlert = (title: string, message: string) => {
+    setAlert({ isOpen: true, title, message });
     setActiveWindow("alert");
+  };
+
+  const handleEmptyRecycleBin = () => {
+    showAlert(
+      "Error",
+      "Cannot delete files. They are probably ghosts from another OS."
+    );
   };
 
   const handleCloseBio = () => {
@@ -137,6 +151,7 @@ export function Desktop() {
       "recycle-bin",
       "cv",
       "resume",
+      "minesweeper",
     ];
     const openCommand = command.startsWith("open ")
       ? command.split(" ")[1]
@@ -345,6 +360,7 @@ export function Desktop() {
                       onOpenOSDrive={() => handleIconClick("os-drive")}
                       onOpenGamesDrive={() => handleIconClick("games-drive")}
                       onOpenProjects={() => handleIconClick("projects")}
+                      onShowAlert={showAlert}
                     />
                   </Window>
                 </motion.div>
@@ -389,6 +405,29 @@ export function Desktop() {
                     <GamesDrive
                       onClose={() => handleCloseWindow("games-drive")}
                       title="Games (D:)"
+                      onOpenApp={handleOpenAndCloseOthers}
+                      onShowAlert={showAlert}
+                    />
+                  </Window>
+                </motion.div>
+              )}
+
+              {openWindows["minesweeper"] && (
+                <motion.div
+                  className="fixed inset-0 flex items-center justify-center print:hidden"
+                  style={{
+                    zIndex: activeWindow === "minesweeper" ? 20 : 21,
+                  }}
+                  onClick={() => handleFocus("minesweeper")}
+                  variants={windowAnimation}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  key="minesweeper-window"
+                >
+                  <Window className="w-auto h-auto">
+                    <MinesweeperGame
+                      onClose={() => handleCloseWindow("minesweeper")}
                     />
                   </Window>
                 </motion.div>

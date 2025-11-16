@@ -45,12 +45,14 @@ export function MyPC({
   onOpenOSDrive,
   onOpenGamesDrive,
   onOpenProjects,
+  onShowAlert,
 }: {
   onClose: () => void;
   title: string;
   onOpenOSDrive: () => void;
   onOpenGamesDrive: () => void;
   onOpenProjects: () => void;
+  onShowAlert: (title: string, message: string) => void;
 }) {
   const handleClick = (driveId: string) => {
     if (driveId === "os") {

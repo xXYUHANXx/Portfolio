@@ -7,13 +7,17 @@ import { cn } from "@/lib/utils";
 type GameIconProps = {
   name: string;
   iconSrc: string;
+  onClick: () => void;
 };
 
-export function GameIcon({ name, iconSrc }: GameIconProps) {
+export function GameIcon({ name, iconSrc, onClick }: GameIconProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <button className="flex flex-col items-center text-center gap-2 group">
+    <button
+      onClick={onClick}
+      className="flex flex-col items-center text-center gap-2 group"
+    >
       <div className="w-24 h-24 rounded-full border-4 border-black bg-gray-200 shadow-md group-hover:scale-110 group-hover:shadow-lg transition-transform duration-200 ease-in-out overflow-hidden relative">
         {isLoading && (
           <div className="absolute inset-0 bg-gray-300 animate-pulse"></div>

@@ -102,7 +102,6 @@ export function MobileDesktop() {
       acc[key] = false;
       return acc;
     }, {} as { [key: string]: boolean });
-
     setOpenWindows(allClosed);
     setIsBioOpen(false);
     setActiveWindow(null);
@@ -119,46 +118,13 @@ export function MobileDesktop() {
 
   const handleCloseBio = () => {
     setIsBioOpen(false);
-    if (openWindows.about) {
-      setActiveWindow("about");
-    } else {
-      setActiveWindow(null);
-    }
+    if (openWindows.about) setActiveWindow("about");
+    else setActiveWindow(null);
   };
 
   const handleCloseAlert = () => {
     setAlert({ isOpen: false, title: "", message: "" });
     setActiveWindow(null);
-  };
-
-  const handlePrintCV = () => {
-    const printContainerId = "print-container";
-
-    // Elige el CV según pantalla
-    const printableContent =
-      document.getElementById("printable-mobile-cv") ||
-      document.getElementById("printable-cv");
-    if (!printableContent) return;
-
-    const existingContainer = document.getElementById(printContainerId);
-    if (existingContainer) {
-      existingContainer.remove();
-    }
-
-    const contentToPrint = printableContent.cloneNode(true) as HTMLElement;
-
-    const printContainer = document.createElement("div");
-    printContainer.id = printContainerId;
-    printContainer.appendChild(contentToPrint);
-    document.body.appendChild(printContainer);
-
-    window.onafterprint = () => {
-      const container = document.getElementById(printContainerId);
-      if (container) container.remove();
-      window.onafterprint = null;
-    };
-
-    window.print();
   };
 
   const windowAnimation = {
@@ -169,7 +135,7 @@ export function MobileDesktop() {
   };
 
   const renderWindow = (id: string, component: React.ReactNode) => (
-    <AnimatePresence>
+    <AnimatePresence key={id}>
       {openWindows[id] && (
         <motion.div
           className="absolute inset-0 bg-white"
@@ -222,21 +188,15 @@ export function MobileDesktop() {
 
           {renderWindow(
             "cv",
-            <MobileCV
-              onBack={() => handleCloseWindow("cv")}
-              onPrint={handlePrintCV}
-            />
+            <MobileCV onBack={() => handleCloseWindow("cv")} />
           )}
-
           {renderWindow("contact", <MobileContact />)}
-
           {renderWindow(
             "projects",
             <Suspense fallback={<ProjectsLoader />}>
               <ProjectsWrapper />
             </Suspense>
           )}
-
           {renderWindow(
             "my-pc",
             <MyPC
@@ -247,7 +207,6 @@ export function MobileDesktop() {
               onOpenProjects={() => handleIconClick("projects")}
             />
           )}
-
           {renderWindow(
             "os-drive",
             <OSDrive
@@ -255,7 +214,6 @@ export function MobileDesktop() {
               title="OS (C:)"
             />
           )}
-
           {renderWindow(
             "games-drive",
             <GamesDrive
@@ -263,7 +221,6 @@ export function MobileDesktop() {
               title="Games (D:)"
             />
           )}
-
           {renderWindow(
             "recycle-bin",
             <RecycleBin

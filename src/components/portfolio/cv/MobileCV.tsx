@@ -11,13 +11,15 @@ import {
 import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-export function MobileCV({
-  onBack,
-  onPrint,
-}: {
-  onBack: () => void;
-  onPrint: () => void;
-}) {
+export function MobileCV({ onBack }: { onBack: () => void }) {
+  // Función para descargar el PDF
+  const handleDownloadPDF = () => {
+    const link = document.createElement("a");
+    link.href = "/CV-YuhanPicos.pdf"; // PDF dentro de /public
+    link.download = "Yuhan_Picos_CV.pdf"; // nombre que tendrá al descargar
+    link.click();
+  };
+
   return (
     <div className="w-full h-full flex flex-col bg-white font-mono">
       {/* Header */}
@@ -33,9 +35,9 @@ export function MobileCV({
           CURRICULUM VITAE
         </span>
         <button
-          onClick={onPrint}
+          onClick={handleDownloadPDF}
           className="p-2 rounded-full hover:bg-gray-100"
-          aria-label="Print or Save as PDF"
+          aria-label="Download PDF"
         >
           <Printer size={24} />
         </button>
@@ -104,7 +106,6 @@ export function MobileCV({
                 <h2 className="text-xl print:text-lg font-bold font-display border-b-2 border-gray-300 pb-1 mb-2">
                   Perfil Profesional
                 </h2>
-
                 <p className="text-justify leading-relaxed">
                   Estudiante del séptimo semestre de Informática, apasionado por
                   la tecnología y el desarrollo de software. Experiencia en
@@ -119,7 +120,6 @@ export function MobileCV({
                 <h2 className="text-xl print:text-lg font-bold font-display border-b-2 border-gray-300 pb-1 mb-2">
                   Habilidades Técnicas
                 </h2>
-
                 <div className="space-y-4 print:space-y-2 font-mono">
                   <div>
                     <h3 className="text-base font-semibold mb-1 font-display">
@@ -178,16 +178,13 @@ export function MobileCV({
                 <h2 className="text-xl print:text-lg font-bold font-display border-b-2 border-gray-300 pb-1 mb-2">
                   Educación
                 </h2>
-
                 <div>
                   <h3 className="text-base font-semibold font-display">
                     Licenciatura en Informática
                   </h3>
-
                   <p className="text-gray-600 text-xs">
                     Universidad de Oriente (UDO) | 2022 - Presente
                   </p>
-
                   <p className="mt-1">
                     Séptimo semestre, enfoque en desarrollo de software y
                     sistemas de información.
@@ -200,7 +197,6 @@ export function MobileCV({
                 <h2 className="text-xl print:text-lg font-bold font-display border-b-2 border-gray-300 pb-1 mb-2">
                   Proyectos Destacados
                 </h2>
-
                 <div className="space-y-4 print:space-y-3">
                   <div>
                     <h3 className="text-base font-semibold font-display">
@@ -213,7 +209,6 @@ export function MobileCV({
                       rutas y logística.
                     </p>
                   </div>
-
                   <div>
                     <h3 className="text-base font-semibold font-display">
                       Momentos Robin Hood — App de Recetas con IA

@@ -33,7 +33,6 @@ const icons = [
     name: "CONTACT",
     iconSrc: "https://i.ibb.co/RT5GfGch/contact.png",
   },
-  
 ];
 
 export function DesktopIcons({
@@ -42,13 +41,13 @@ export function DesktopIcons({
   onIconClick: (id: string) => void;
 }) {
   return (
-    <div className="absolute top-8 right-8 flex justify-end items-start">
-      <div className="grid grid-cols-3 gap-x-12 gap-y-8">
+    <div className="absolute top-8 right-4 sm:right-8 flex justify-end items-start md:grid md:grid-cols-1 md:gap-y-8">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-3 gap-x-8 gap-y-8 md:gap-x-8">
         {icons.map(({ id, name, iconSrc }) => (
           <button
             key={id}
             onClick={() => onIconClick(id)}
-            className="flex flex-col items-center gap-2 text-center transition-transform duration-200 ease-in-out hover:scale-110"
+            className="flex flex-col items-center gap-2 text-center transition-transform duration-200 ease-in-out hover:scale-110 w-20"
           >
             <div className="p-1">
               <Image
@@ -59,7 +58,7 @@ export function DesktopIcons({
                 className="w-16 h-16"
               />
             </div>
-            <span className="font-mono text-sm px-1 ">{name}</span>
+            <span className="font-mono text-sm px-1 break-words">{name}</span>
           </button>
         ))}
       </div>

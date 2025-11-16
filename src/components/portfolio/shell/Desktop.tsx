@@ -153,38 +153,30 @@ export function Desktop() {
   const handlePrintCV = () => {
     const printContainerId = "print-container";
 
-    // Cleanup previous print container if it exists
     const existingContainer = document.getElementById(printContainerId);
     if (existingContainer) {
       existingContainer.remove();
     }
 
-    // Find the CV content
     const printableContent = document.getElementById("printable-cv");
     if (!printableContent) return;
 
-    // Clone the content
     const contentToPrint = printableContent.cloneNode(true) as HTMLElement;
 
-    // Create a container for the cloned content
     const printContainer = document.createElement("div");
     printContainer.id = printContainerId;
     printContainer.appendChild(contentToPrint);
 
-    // Append the container to the body
     document.body.appendChild(printContainer);
 
-    // Add a listener to remove the container after printing
     window.onafterprint = () => {
       const container = document.getElementById(printContainerId);
       if (container) {
         container.remove();
       }
-      // Clean up the event listener
       window.onafterprint = null;
     };
 
-    // Trigger the print dialog
     window.print();
   };
 
@@ -205,7 +197,7 @@ export function Desktop() {
   };
 
   return (
-    <div className="bg-black h-screen font-display p-4 flex items-center justify-center relative print:hidden">
+    <div className="bg-black h-screen font-display p-2 sm:p-4 flex items-center justify-center relative print:hidden">
       <AnimatePresence>
         {isAnyWindowOpen && (
           <motion.div
@@ -219,13 +211,8 @@ export function Desktop() {
         )}
       </AnimatePresence>
 
-      {/*Video Background*/}
-      <VideoBackground />
-
-      <div
-        id="printable-cv-container"
-        className="flex flex-col w-full h-full bg-white shadow-[inset_0_10px_15px_-10px_rgba(0,0,0,0.3),inset_10px_0_15px_-10px_rgba(0,0,0,0.3),inset_-10px_0_15px_-10px_rgba(0,0,0,0.3)] overflow-hidden rounded-2xl border-4 border-black"
-      >
+      <div className="flex flex-col w-full h-full bg-white shadow-[inset_0_10px_15px_-10px_rgba(0,0,0,0.3),inset_10px_0_15px_-10px_rgba(0,0,0,0.3),inset_-10px_0_15px_-10px_rgba(0,0,0,0.3)] overflow-hidden rounded-2xl border-4 border-black">
+        <VideoBackground/>
         <Header />
         <div id="desktop-content" className="relative flex-1 scanline-overlay">
           <main className="relative flex-1 p-8 bg-grid-pattern-more-lines h-full">
@@ -451,13 +438,13 @@ export function Desktop() {
               )}
             </AnimatePresence>
 
-            <div className="absolute top-12 left-8 print:hidden">
+            <div className="absolute top-12 left-8 print:hidden hidden md:block">
               <Terminal onCommand={handleCommand} isBooting={false} />
             </div>
 
             <DesktopIcons onIconClick={handleIconClick} />
 
-            <div className="absolute bottom-8 right-8 print:hidden">
+            <div className="absolute bottom-8 right-8 print:hidden hidden md:block">
               <SystemMonitor />
             </div>
           </main>

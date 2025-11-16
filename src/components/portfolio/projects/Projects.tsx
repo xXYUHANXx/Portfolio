@@ -120,7 +120,7 @@ export function Projects({
   }
 
   return (
-    <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full overflow-hidden">
+    <div className="relative font-mono text-sm bg-grid-pattern-more-lines border-4 border-black rounded-[40px] shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white flex flex-col flex-grow h-full overflow-hidden max-h-full">
       <VideoBackground />
       <WindowHeader title={title} onClose={onClose} />
       <div className="flex flex-grow min-h-0">

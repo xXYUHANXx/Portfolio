@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { VideoBackground } from "@/components/VideoBackground";
 
 const Clock = () => {
   const [time, setTime] = React.useState("");
@@ -114,8 +115,9 @@ const BatteryIcon = () => (
 export function Header() {
   return (
     <header className="border-b-4 border-black p-2 flex justify-between items-center flex-shrink-0 bg-grid-pattern-more-lines">
+      <VideoBackground/>
       <div className="flex items-end gap-2 flex-grow">
-        <h1 className="text-3xl font-bold font-display leading-none whitespace-nowrap">
+        <h1 className="text-xl md:text-3xl font-bold font-display leading-none whitespace-nowrap">
           YuhanPicos
         </h1>
         <div className="h-8 w-full flex flex-col justify-around">
@@ -127,8 +129,8 @@ export function Header() {
           <div className="h-0.5 bg-black"></div>
         </div>
       </div>
-      <div className="flex items-center gap-4 text-right pl-4">
-        <div>
+      <div className="flex items-center gap-2 md:gap-4 text-right pl-2 md:pl-4">
+        <div className="hidden md:block">
           <p className="font-mono text-sm">yuhanpicos740@gmail.com</p>
           <Clock />
         </div>

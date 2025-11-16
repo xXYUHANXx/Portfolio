@@ -214,7 +214,7 @@ export function Desktop() {
       <div className="flex flex-col w-full h-full bg-white shadow-[inset_0_10px_15px_-10px_rgba(0,0,0,0.3),inset_10px_0_15px_-10px_rgba(0,0,0,0.3),inset_-10px_0_15px_-10px_rgba(0,0,0,0.3)] overflow-hidden rounded-2xl border-4 border-black">
         <Header />
         <div id="desktop-content" className="relative flex-1">
-          <main className="relative flex-1 h-full p-4 md:p-8">
+          <main className="relative flex-1 h-full p-4 md:p-8 bg-grid-pattern-more-lines">
             <AnimatePresence>
               {openWindows.about && (
                 <motion.div

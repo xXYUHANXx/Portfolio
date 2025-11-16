@@ -102,6 +102,10 @@
 }
 
 @media print {
+  .print\:overflow-visible {
+    overflow: visible !important;
+  }
+
   body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;

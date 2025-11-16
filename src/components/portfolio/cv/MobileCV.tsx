@@ -9,7 +9,6 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import React from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function MobileCV({
   onBack,
@@ -20,6 +19,7 @@ export function MobileCV({
 }) {
   return (
     <div className="w-full h-full flex flex-col bg-white font-mono">
+      {/* HEADER SUPERIOR */}
       <div className="p-4 flex items-center justify-between border-b-2 border-black sticky top-0 bg-white z-10">
         <button
           onClick={onBack}
@@ -28,9 +28,11 @@ export function MobileCV({
         >
           <ArrowLeft size={24} />
         </button>
+
         <span className="font-semibold font-display text-sm">
           CURRICULUM VITAE
         </span>
+
         <button
           onClick={onPrint}
           className="p-2 rounded-full hover:bg-gray-100"
@@ -40,21 +42,23 @@ export function MobileCV({
         </button>
       </div>
 
-      <ScrollArea className="flex-grow">
+      {/* CUERPO COMPLETO – SIN SCROLL INTERNO */}
+      <div className="flex-grow overflow-visible print:overflow-visible">
         <div id="printable-cv">
           <div className="max-w-4xl mx-auto bg-white">
-            {/* Header */}
+            {/* HEADER DE INFORMACIÓN */}
             <header className="bg-gray-800 text-white p-6 print:p-4 font-mono">
               <div className="text-center">
-                <h1 className="text-3xl print:text-2xl font-bold font-display">
+                <h1 className="text-3xl print:text-2xl font-display font-bold">
                   Yuhan Picos
                 </h1>
+
                 <p className="text-lg print:text-base mt-1">
                   Desarrollador de Software en Formación
                 </p>
               </div>
 
-              <div className="flex flex-col items-center gap-2 mt-4 text-xs">
+              <div className="flex flex-col items-center gap-2 mt-4 text-xs font-mono">
                 <a
                   href="mailto:yuhanpicos.dev@gmail.com"
                   className="flex items-center gap-2 hover:text-gray-300"
@@ -95,15 +99,15 @@ export function MobileCV({
               </div>
             </header>
 
-            {/* Main */}
+            {/* MAIN */}
             <main className="p-6 print:p-4 text-gray-800 text-sm font-mono">
-              {/* Perfil Profesional */}
+              {/* PERFIL PROFESIONAL */}
               <section className="mb-6 print:mb-3">
-                <h2 className="text-xl print:text-lg font-bold font-display border-b-2 border-gray-300 pb-1 mb-2">
+                <h2 className="text-xl print:text-lg font-display font-bold border-b-2 border-gray-300 pb-1 mb-2">
                   Perfil Profesional
                 </h2>
 
-                <p className="text-justify leading-relaxed">
+                <p className="text-justify leading-relaxed font-mono">
                   Estudiante del séptimo semestre de Informática, apasionado por
                   la tecnología y el desarrollo de software. Cuento con
                   experiencia práctica en diversos lenguajes como Python, Java,
@@ -114,15 +118,15 @@ export function MobileCV({
                 </p>
               </section>
 
-              {/* Habilidades Técnicas */}
+              {/* HABILIDADES TÉCNICAS */}
               <section className="mb-6 print:mb-3">
-                <h2 className="text-xl print:text-lg font-bold font-display border-b-2 border-gray-300 pb-1 mb-2">
+                <h2 className="text-xl print:text-lg font-display font-bold border-b-2 border-gray-300 pb-1 mb-2">
                   Habilidades Técnicas
                 </h2>
 
                 <div className="space-y-4 print:space-y-2 font-mono">
                   <div>
-                    <h3 className="text-base font-semibold mb-1 font-display">
+                    <h3 className="text-base font-display font-semibold mb-1">
                       Frontend
                     </h3>
                     <ul className="list-disc list-inside space-y-1">
@@ -137,7 +141,7 @@ export function MobileCV({
                   </div>
 
                   <div>
-                    <h3 className="text-base font-semibold mb-1 font-display">
+                    <h3 className="text-base font-display font-semibold mb-1">
                       Backend
                     </h3>
                     <ul className="list-disc list-inside space-y-1">
@@ -148,7 +152,7 @@ export function MobileCV({
                   </div>
 
                   <div>
-                    <h3 className="text-base font-semibold mb-1 font-display">
+                    <h3 className="text-base font-display font-semibold mb-1">
                       Bases de Datos
                     </h3>
                     <ul className="list-disc list-inside space-y-1">
@@ -159,7 +163,7 @@ export function MobileCV({
                   </div>
 
                   <div>
-                    <h3 className="text-base font-semibold mb-1 font-display">
+                    <h3 className="text-base font-display font-semibold mb-1">
                       Herramientas y Tecnologías
                     </h3>
                     <ul className="list-disc list-inside space-y-1">
@@ -173,18 +177,18 @@ export function MobileCV({
                 </div>
               </section>
 
-              {/* Educación */}
+              {/* EDUCACIÓN */}
               <section className="mb-6 print:mb-3">
-                <h2 className="text-xl print:text-lg font-bold font-display border-b-2 border-gray-300 pb-1 mb-2">
+                <h2 className="text-xl print:text-lg font-display font-bold border-b-2 border-gray-300 pb-1 mb-2">
                   Educación
                 </h2>
 
                 <div>
-                  <h3 className="text-base font-semibold font-display">
+                  <h3 className="text-base font-display font-semibold">
                     Licenciatura en Informática
                   </h3>
 
-                  <p className="text-gray-600 text-xs">
+                  <p className="text-gray-600 text-xs font-mono">
                     Universidad de Oriente (UDO) | 2022 - Presente
                   </p>
 
@@ -195,15 +199,15 @@ export function MobileCV({
                 </div>
               </section>
 
-              {/* Proyectos */}
+              {/* PROYECTOS */}
               <section>
-                <h2 className="text-xl print:text-lg font-bold font-display border-b-2 border-gray-300 pb-1 mb-2">
+                <h2 className="text-xl print:text-lg font-display font-bold border-b-2 border-gray-300 pb-1 mb-2">
                   Proyectos Destacados
                 </h2>
 
-                <div className="space-y-4 print:space-y-3">
+                <div className="space-y-4 print:space-y-3 font-mono">
                   <div>
-                    <h3 className="text-base font-semibold font-display">
+                    <h3 className="text-base font-display font-semibold">
                       Cargo Track — App de Logística Full-Stack
                     </h3>
                     <p className="text-justify leading-relaxed">
@@ -216,7 +220,7 @@ export function MobileCV({
                   </div>
 
                   <div>
-                    <h3 className="text-base font-semibold font-display">
+                    <h3 className="text-base font-display font-semibold">
                       Momentos Robin Hood — App de Recetas con IA
                     </h3>
                     <p className="text-justify leading-relaxed">
@@ -230,7 +234,7 @@ export function MobileCV({
             </main>
           </div>
         </div>
-      </ScrollArea>
+      </div>
     </div>
   );
 }

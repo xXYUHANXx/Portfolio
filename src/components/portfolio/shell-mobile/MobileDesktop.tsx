@@ -17,6 +17,7 @@ import { MobileAbout } from "@/components/portfolio/about/MobileAbout";
 import { MobileBio } from "@/components/portfolio/about/MobileBio";
 import { MobileCV } from "@/components/portfolio/cv/MobileCV";
 import { MobileMyPC } from "@/components/portfolio/my-pc/MobileMyPC";
+import { SnakeGame } from "@/components/portfolio/games/snake/SnakeGame";
 
 function ProjectsLoader() {
   return (
@@ -67,8 +68,7 @@ export function MobileDesktop() {
     "my-pc": false,
     "recycle-bin": false,
     cv: false,
-    "os-drive": false,
-    "games-drive": false,
+    games: false,
   });
   const [isBioOpen, setIsBioOpen] = React.useState(false);
   const [activeWindow, setActiveWindow] = React.useState<string | null>(null);
@@ -235,18 +235,8 @@ export function MobileDesktop() {
             <MobileMyPC onBack={() => handleCloseWindow("my-pc")} />
           )}
           {renderWindow(
-            "os-drive",
-            <OSDrive
-              onClose={() => handleCloseWindow("os-drive")}
-              title="OS (C:)"
-            />
-          )}
-          {renderWindow(
-            "games-drive",
-            <GamesDrive
-              onClose={() => handleCloseWindow("games-drive")}
-              title="Games (D:)"
-            />
+            "games",
+            <SnakeGame onBack={() => handleCloseWindow("games")} />
           )}
           {renderWindow(
             "recycle-bin",

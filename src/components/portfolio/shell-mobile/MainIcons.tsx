@@ -5,8 +5,8 @@ import Image from "next/image";
 const mainIcons = [
   {
     id: "my-pc",
-    name: "Device Info",
-    iconSrc: "https://i.ibb.co/cc4ZSwKZ/config.png",
+    name: "Miscellaneous",
+    iconSrc: "https://i.ibb.co/1G8bwQhf/pccom.png",
   },
   {
     id: "projects",
@@ -27,6 +27,11 @@ const mainIcons = [
     id: "cv",
     name: "Resume",
     iconSrc: "https://i.ibb.co/qLWrRtZW/Resume.png",
+  },
+  {
+    id: "games",
+    name: "Snake Game",
+    iconSrc: "https://i.ibb.co/vxhf2tWr/snakegame.png",
   },
 ];
 

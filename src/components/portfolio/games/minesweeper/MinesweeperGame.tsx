@@ -148,7 +148,7 @@ export function MinesweeperGame({
   mines?: number;
   onClose: () => void;
 }) {
-  const playClick = useSound("/minecraft-click.mp3");
+  const playClick = useSound("/click.mp3");
   const playFlag = useSound("/flag.mp3", 0.5, { playbackRate: 1.2 });
   const playWin = useSound("/win.mp3");
   const playLose = useSound("/explosion.mp3", 0.5);

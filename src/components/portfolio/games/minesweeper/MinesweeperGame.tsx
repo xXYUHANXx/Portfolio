@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useMinesweeper } from "@/hooks/use-minesweeper";
+import { useSound } from "@/hooks/use-sound";
 
 function DigitDisplay({ value }: { value: number }) {
   const s = String(Math.max(0, Math.min(999, value))).padStart(3, "0");
@@ -84,7 +85,7 @@ function CellView({
       );
     }
   } else {
-    tile = "/minesweeper/tiles/tiles.png"; // corregido
+    tile = "/minesweeper/tiles/tiles.png";
 
     if (isMine) {
       content = (
@@ -147,6 +148,11 @@ export function MinesweeperGame({
   mines?: number;
   onClose: () => void;
 }) {
+  const playClick = useSound("/minecraft-click.mp3");
+  const playFlag = useSound("/flag.mp3", 0.5, { playbackRate: 1.2 });
+  const playWin = useSound("/win.mp3");
+  const playLose = useSound("/explosion.mp3", 0.5);
+
   const {
     board,
     gameState,
@@ -155,7 +161,12 @@ export function MinesweeperGame({
     resetGame,
     handleLeftClick,
     handleRightClick,
-  } = useMinesweeper(rows, cols, mines);
+  } = useMinesweeper(rows, cols, mines, {
+    onCellClick: playClick,
+    onFlag: playFlag,
+    onWin: playWin,
+    onLose: playLose,
+  });
 
   return (
     <div
